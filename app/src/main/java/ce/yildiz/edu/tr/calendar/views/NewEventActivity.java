@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -30,9 +31,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -91,8 +95,8 @@ public class NewEventActivity extends AppCompatActivity {
     private TextInputLayout eventLocationTextInputLayout;
     private ImageButton locationImageButton;
     private TextInputLayout phoneNumberTextInputLayout;
-    private TextInputLayout mailTextInputLayout;
-    private TextInputEditText mailTextInputEditText;
+    //private TextInputLayout mailTextInputLayout;
+   // private TextInputEditText mailTextInputEditText;
     private Switch mailSwitch;
 
     private boolean mLocationPermissionGranted;
@@ -105,6 +109,16 @@ public class NewEventActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private List<Notification> notifications;
     private Event event;
+    //EVENT TYPE
+    Spinner spinnerType;
+    String Type;
+
+
+    SeekBar seekBar;
+    TextView textView;
+    String clickedTypeName;
+    public ArrayList<typeItem> mTpyList;
+    public typeAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,6 +137,71 @@ public class NewEventActivity extends AppCompatActivity {
         defineListeners();
 
         setSupportActionBar(toolbar);
+
+
+        initList();
+        spinnerType = findViewById(R.id.spinner);
+
+        mAdapter = new typeAdapter(this,mTpyList);
+        spinnerType.setAdapter(mAdapter);
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                typeItem clickedItem = (typeItem) adapterView.getItemAtPosition(i);
+                 clickedTypeName = clickedItem.getTypeName();
+                //Toast.makeText(this,clickedTypeName+" selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //==========================SEEKBAR==========================
+        seekBar = findViewById(R.id.seekbar);
+        //textView = findViewById(R.id.textView2);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                switch (i){
+                    case 0:
+                        //textView.setText("Low");
+                        Toast.makeText(NewEventActivity.this,"Low", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                       // textView.setText("Medium");
+                        Toast.makeText(NewEventActivity.this,"Medium", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        //textView.setText("High");
+                        Toast.makeText(NewEventActivity.this,"High", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+    public void initList(){
+        mTpyList = new ArrayList<>();
+        mTpyList.add(new typeItem("Eid",R.drawable.c1));
+        mTpyList.add(new typeItem("Birthday",R.drawable.c2));
+        mTpyList.add(new typeItem("Travel",R.drawable.c3));
+        mTpyList.add(new typeItem("Meeting",R.drawable.c4));
+        mTpyList.add(new typeItem("Salary",R.drawable.c5));
+        mTpyList.add(new typeItem("Others",R.drawable.c6));
+
     }
 
 
@@ -138,13 +217,15 @@ public class NewEventActivity extends AppCompatActivity {
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
-        pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-        eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-        locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-        phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
-        mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
-        mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
-        mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
+
+       //pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
+      //  eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
+       // locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
+       // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
+       // mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
+       // mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
+       // mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
+
 
         progressBar = (ProgressBar) findViewById(R.id.AddNewEventActivity_ProgressBar);
         toolbar = (Toolbar) findViewById(R.id.AddNewEventActivity_Toolbar);
@@ -159,8 +240,8 @@ public class NewEventActivity extends AppCompatActivity {
         calendar.setTimeZone(TimeZone.getDefault());
         setTimeTextView.setText(new SimpleDateFormat("K:mm a", Locale.ENGLISH).format(calendar.getTime()));
 
-        GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
-        bgShape.setColor(getResources().getInteger(R.color.red));
+        //GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
+        //bgShape.setColor(getResources().getInteger(R.color.white));
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         repeatTextView.setText(sharedPreferences.getString("frequency", "Repeat One-Time"));
@@ -284,13 +365,13 @@ public class NewEventActivity extends AppCompatActivity {
             }
         });
 
-        pickNoteColorTextView.setOnClickListener(new View.OnClickListener() {
+        /*pickNoteColorTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pickNoteColor(view);
             }
-        });
-
+        });*/
+/*
         locationImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -300,8 +381,8 @@ public class NewEventActivity extends AppCompatActivity {
                     startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
                 }
             }
-        });
-
+        }); */
+/*
         mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -315,7 +396,7 @@ public class NewEventActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        }); */
     }
 
     private void setDuration(View view) {
@@ -383,7 +464,7 @@ public class NewEventActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void pickNoteColor(View view) {
+    /*public void pickNoteColor(View view) {
         final ArrayList<String> colors = Utils.getColors(this);
         ColorPicker colorPicker = new ColorPicker(this);
         colorPicker
@@ -404,6 +485,8 @@ public class NewEventActivity extends AppCompatActivity {
                     }
                 }).show();
     }
+*/
+
 
     private void setUpRecyclerView() {
         notificationsRecyclerView.setHasFixedSize(true);
@@ -466,7 +549,7 @@ public class NewEventActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), ServiceAutoLauncher.class);
         intent.putExtra("eventTitle", event.getTitle());
         intent.putExtra("eventNote", event.getNote());
-        intent.putExtra("eventColor", event.getColor());
+        //intent.putExtra("eventColor", event.getColor());
         intent.putExtra("eventTimeStamp", event.getDate() + ", " + event.getTime());
         intent.putExtra("interval", getInterval());
         intent.putExtra("notificationId", notification.getChannelId());
@@ -514,15 +597,15 @@ public class NewEventActivity extends AppCompatActivity {
         event.setRecurring(isRecurring(repeatTextView.getText().toString()));
         event.setRecurringPeriod(repeatTextView.getText().toString());
         event.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
-        if (notColor == 0) {
+        /*if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
             event.setColor(notColor);
         } else {
             event.setColor(notColor);
-        }
-        event.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
-        event.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
-        event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
+        }*/
+        //event.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
+        //event.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
+       // event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
 
     }
 
