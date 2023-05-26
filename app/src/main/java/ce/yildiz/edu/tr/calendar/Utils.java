@@ -23,7 +23,7 @@ public class Utils {
     public static final String TODAY = "Today";
     public static final String NEXT_7_DAYS = "Next 7 days";
 
-    public static final String NEXT_5_DAYS = "Next 5 days";
+    public static final String NEXT_5_EVENTS = "Next 5 events";
     public static final String NEXT_30_DAYS = "Next 30 days";
     public static final String THIS_YEAR = "This Year";
 

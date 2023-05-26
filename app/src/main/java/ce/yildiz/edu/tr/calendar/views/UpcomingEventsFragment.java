@@ -102,7 +102,7 @@ public class UpcomingEventsFragment extends Fragment {
                             periodTextView.setText(Utils.CURRENT_FILTER);
                             break;
                         case R.id.PopupPeriod_Item_Next5Days:
-                            Utils.CURRENT_FILTER = Utils.NEXT_5_DAYS;
+                            Utils.CURRENT_FILTER = Utils.NEXT_5_EVENTS;
                             periodTextView.setText(Utils.CURRENT_FILTER);
                             break;
                         case R.id.PopupPeriod_Item_Next30Days:
@@ -137,8 +137,8 @@ public class UpcomingEventsFragment extends Fragment {
                 case Utils.TODAY:
                     events = collectTodayEvents(today);
                     break;
-                    case Utils.NEXT_5_DAYS:
-                    events = collectNext5DaysEvents(today);
+                    case Utils.NEXT_5_EVENTS:
+                    events = collectNext5Events(today);
                     break;
                 case Utils.NEXT_30_DAYS:
                     events = collectNext30DaysEvents(today);
@@ -209,7 +209,51 @@ public class UpcomingEventsFragment extends Fragment {
         return eventList;
     }
 
+    private List<Event> collectNext5Events(Date today) throws ParseException {
+        List<Event> eventList = new ArrayList<>();
 
+        // Add recurring events
+        List<RecurringPattern> recurringPatterns = readRecurringPatterns();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+
+        // Get current date and time
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.setTime(today);
+
+        List<Event> allEvents = dbHelper.readAllEvents(sqLiteDatabase);
+
+        // Find the closest 5 events
+        for (int i = 0; i < 5; i++) {
+            Event closestEvent = null;
+            Date closestEventDate = null;
+
+            // Iterate over all events to find the closest event
+            for (Event mEvent : allEvents) {
+                Date eventDate = Utils.eventDateFormat.parse(mEvent.getDate());
+
+                // Skip events that have already passed
+                if (eventDate.before(currentCalendar.getTime())) {
+                    continue;
+                }
+
+                // If closest event not found yet or this event is closer than the previous closest event
+                if (closestEvent == null || eventDate.before(closestEventDate)) {
+                    closestEvent = mEvent;
+                    closestEventDate = eventDate;
+                }
+            }
+
+            // If closest event found, add it to the event list
+            if (closestEvent != null) {
+                eventList.add(closestEvent);
+                allEvents.remove(closestEvent); // Remove the closest event from the list to avoid duplicate selection
+            }
+        }
+
+        sqLiteDatabase.close();
+        return eventList;
+    }
+    /*
     private List<Event> collectNext5DaysEvents(Date today) throws ParseException {
         Calendar fromCalendar = Calendar.getInstance();
         fromCalendar.setTime(today);
@@ -274,7 +318,7 @@ public class UpcomingEventsFragment extends Fragment {
         }
         sqLiteDatabase.close();
         return eventList;
-    }
+    } */
 
     /*
     private List<Event> collectNext7DaysEvents(Date today) throws ParseException {
