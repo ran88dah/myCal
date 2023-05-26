@@ -4,8 +4,9 @@
         android:id="@+id/PopupPeriod_Item_Today"
         android:title="@string/today" />
     <item
-        android:id="@+id/PopupPeriod_Item_Next7Days"
-        android:title="@string/next_7_days" />
+        android:id="@+id/PopupPeriod_Item_Next5Days"
+        android:title="@string/next_5_days" />
+
     <item
         android:id="@+id/PopupPeriod_Item_Next30Days"
         android:title="@string/next_30_days" />

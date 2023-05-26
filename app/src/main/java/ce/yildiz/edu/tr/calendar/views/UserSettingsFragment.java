@@ -20,7 +20,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import ce.yildiz.edu.tr.calendar.R;
-
+//WONT BE USED !!!
 public class UserSettingsFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();

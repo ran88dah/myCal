@@ -22,28 +22,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private final Fragment calendarFragment = new CalendarFragment();
     private final Fragment upcomingEventsFragment = new UpcomingEventsFragment();
-    private final Fragment userSettingsFragment = new UserSettingsFragment();
+   // private final Fragment userSettingsFragment = new UserSettingsFragment();
 
     private final FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(getAppTheme());
+       // setTheme(getAppTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.MainActivity_BottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        fragmentManager.beginTransaction().add(R.id.MainActivity_FrameLayout_Container, userSettingsFragment).hide(userSettingsFragment).commit();
+        //fragmentManager.beginTransaction().add(R.id.MainActivity_FrameLayout_Container, userSettingsFragment).hide(userSettingsFragment).commit();
         fragmentManager.beginTransaction().add(R.id.MainActivity_FrameLayout_Container, upcomingEventsFragment).hide(upcomingEventsFragment).commit();
         fragmentManager.beginTransaction().add(R.id.MainActivity_FrameLayout_Container, calendarFragment).commit();
 
+        /*
         if (getFlag("isChanged")) {
             bottomNavigationView.setSelectedItemId(R.id.BottomNavigation_Item_Settings);
             bottomNavigationView.performClick();
             saveFlag("isChanged", false);
-        }
+        } */
     }
 
     @Override
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.BottomNavigation_Item_Calendar:
                 ((CalendarFragment) calendarFragment).setUpCalendar();
                 fragmentManager.beginTransaction()
-                        .hide(userSettingsFragment)
+                     //   .hide(userSettingsFragment)
                         .hide(upcomingEventsFragment)
                         .show(calendarFragment)
                         .commit();
@@ -62,22 +63,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 ((UpcomingEventsFragment) upcomingEventsFragment).setUpRecyclerView();
                 fragmentManager.beginTransaction()
                         .hide(calendarFragment)
-                        .hide(userSettingsFragment)
+                      //  .hide(userSettingsFragment)
                         .show(upcomingEventsFragment)
                         .commit();
                 break;
-            case R.id.BottomNavigation_Item_Settings:
+           /* case R.id.BottomNavigation_Item_Settings:
                 fragmentManager.beginTransaction()
                         .hide(calendarFragment)
                         .hide(upcomingEventsFragment)
                         .show(userSettingsFragment)
                         .commit();
-                break;
+                break;*/
         }
 
         return true;
     }
-
+    //code to switch mode
+  /*
     private int getAppTheme() {
         switch (getString("theme")) {
             case "Dark":
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         return R.style.DarkIndigoTheme;
     }
-
+   */
     private void saveFlag(String key, boolean flag) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();

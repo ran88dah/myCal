@@ -22,6 +22,8 @@ public class Utils {
     public static String CURRENT_FILTER = "Today";
     public static final String TODAY = "Today";
     public static final String NEXT_7_DAYS = "Next 7 days";
+
+    public static final String NEXT_5_DAYS = "Next 5 days";
     public static final String NEXT_30_DAYS = "Next 30 days";
     public static final String THIS_YEAR = "This Year";
 

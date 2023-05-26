@@ -9,9 +9,6 @@
         android:id="@+id/BottomNavigation_Item_UpcomingEvents"
         android:icon="@drawable/ic_event_available_white"
         android:title="@string/upcoming_events" />
-    <item
-        android:id="@+id/BottomNavigation_Item_Settings"
-        android:icon="@drawable/ic_person_white"
-        android:title="@string/user_settings" />
+
 
 </menu>

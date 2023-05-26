@@ -101,8 +101,8 @@ public class UpcomingEventsFragment extends Fragment {
                             Utils.CURRENT_FILTER = Utils.TODAY;
                             periodTextView.setText(Utils.CURRENT_FILTER);
                             break;
-                        case R.id.PopupPeriod_Item_Next7Days:
-                            Utils.CURRENT_FILTER = Utils.NEXT_7_DAYS;
+                        case R.id.PopupPeriod_Item_Next5Days:
+                            Utils.CURRENT_FILTER = Utils.NEXT_5_DAYS;
                             periodTextView.setText(Utils.CURRENT_FILTER);
                             break;
                         case R.id.PopupPeriod_Item_Next30Days:
@@ -137,8 +137,8 @@ public class UpcomingEventsFragment extends Fragment {
                 case Utils.TODAY:
                     events = collectTodayEvents(today);
                     break;
-                case Utils.NEXT_7_DAYS:
-                    events = collectNext7DaysEvents(today);
+                    case Utils.NEXT_5_DAYS:
+                    events = collectNext5DaysEvents(today);
                     break;
                 case Utils.NEXT_30_DAYS:
                     events = collectNext30DaysEvents(today);
@@ -209,6 +209,74 @@ public class UpcomingEventsFragment extends Fragment {
         return eventList;
     }
 
+
+    private List<Event> collectNext5DaysEvents(Date today) throws ParseException {
+        Calendar fromCalendar = Calendar.getInstance();
+        fromCalendar.setTime(today);
+
+        Calendar toCalendar = (Calendar) fromCalendar.clone();
+        toCalendar.add(Calendar.DAY_OF_MONTH, 8);
+
+        Date fromDate = fromCalendar.getTime();
+        Date toDate = toCalendar.getTime();
+
+        List<Event> eventList = new ArrayList<>();
+        // Add recurring events
+        List<RecurringPattern> recurringPatterns = readRecurringPatterns();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Event event = new Event();
+        for (RecurringPattern recurringPattern : recurringPatterns) {
+            switch (recurringPattern.getPattern()) {
+                case Utils.DAILY:
+                    Calendar mCalendar = (Calendar) fromCalendar.clone();
+                    event = dbHelper.readEvent(sqLiteDatabase, recurringPattern.getEventId());
+                    for (int i = 0; i < 5; i++) {
+                        mCalendar.add(Calendar.DAY_OF_MONTH, 1);
+                        event.setDate(Utils.eventDateFormat.format(mCalendar.getTime()));
+                        eventList.add(event);
+                        event = dbHelper.readEvent(sqLiteDatabase, recurringPattern.getEventId()); // TODO: clone the object
+                    }
+                    break;
+                case Utils.WEEKLY:
+                    mCalendar = (Calendar) fromCalendar.clone();
+                    mCalendar.add(Calendar.DAY_OF_MONTH, 7);
+                    mCalendar.set(Calendar.DAY_OF_WEEK, recurringPattern.getDayOfWeek());
+                    event = dbHelper.readEvent(sqLiteDatabase, recurringPattern.getEventId());
+                    event.setDate(Utils.eventDateFormat.format(mCalendar.getTime()));
+                    eventList.add(event);
+                    break;
+                case Utils.MONTHLY:
+                    mCalendar = (Calendar) fromCalendar.clone();
+                    mCalendar.add(Calendar.DAY_OF_MONTH, 1);
+                    if (recurringPattern.getDayOfMonth() >= mCalendar.get(Calendar.DAY_OF_MONTH)) {
+                        mCalendar.set(Calendar.DAY_OF_MONTH, recurringPattern.getDayOfMonth());
+                        event = dbHelper.readEvent(sqLiteDatabase, recurringPattern.getEventId());
+                        event.setDate(Utils.eventDateFormat.format(mCalendar.getTime()));
+                        eventList.add(event);
+                    }
+                    break;
+                case Utils.THIS_YEAR:
+                    mCalendar = (Calendar) fromCalendar.clone();
+                    mCalendar.set(Calendar.MONTH, recurringPattern.getMonthOfYear());
+                    mCalendar.set(Calendar.DAY_OF_MONTH, recurringPattern.getDayOfMonth());
+                    event = dbHelper.readEvent(sqLiteDatabase, recurringPattern.getEventId());
+                    event.setDate(Utils.eventDateFormat.format(today));
+                    eventList.add(event);
+            }
+        }
+
+        List<Event> allEvents = dbHelper.readAllEvents(sqLiteDatabase);
+        for (Event mEvent : allEvents) {
+            Date currentDate = Utils.eventDateFormat.parse(mEvent.getDate());
+            if (currentDate.after(fromDate) && currentDate.before(toDate) && !isContains(eventList, mEvent.getId())) {
+                eventList.add(mEvent);
+            }
+        }
+        sqLiteDatabase.close();
+        return eventList;
+    }
+
+    /*
     private List<Event> collectNext7DaysEvents(Date today) throws ParseException {
         Calendar fromCalendar = Calendar.getInstance();
         fromCalendar.setTime(today);
@@ -274,6 +342,9 @@ public class UpcomingEventsFragment extends Fragment {
         sqLiteDatabase.close();
         return eventList;
     }
+
+
+     */
 
     private List<Event> collectNext30DaysEvents(Date today) throws ParseException {
         Calendar fromCalendar = Calendar.getInstance();
