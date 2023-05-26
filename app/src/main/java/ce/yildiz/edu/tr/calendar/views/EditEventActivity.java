@@ -251,7 +251,7 @@ public class EditEventActivity extends AppCompatActivity {
             setTimeTextView.setText(mEvent.getTime());
         }
 
-        setDurationButton.setText(mEvent.getDuration());
+       // setDurationButton.setText(mEvent.getDuration());
 
 //        eventNotifications = readNotifications(mEvent.getId());
 //        cancelAlarms(eventNotifications);
@@ -823,7 +823,7 @@ public class EditEventActivity extends AppCompatActivity {
                 }
             }
         }
-    }   */
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -834,5 +834,5 @@ public class EditEventActivity extends AppCompatActivity {
             }
         }
 
-    }
+    } */
 }
