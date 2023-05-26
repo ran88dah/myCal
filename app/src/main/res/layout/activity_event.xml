@@ -244,17 +244,7 @@
 
                             </LinearLayout>
 
-                            <Button
-                                android:id="@+id/AddNewEventActivity_Button_Duration"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginBottom="20dp"
-                                android:background="?mainColor"
 
-                                android:text="@string/duration_0_hours_0_minutes"
-                                android:textColor="@color/white" />
                         </LinearLayout>
 
 

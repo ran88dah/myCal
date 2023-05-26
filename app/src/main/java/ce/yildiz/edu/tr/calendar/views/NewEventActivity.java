@@ -86,7 +86,7 @@ public class NewEventActivity extends AppCompatActivity {
     private TextView setDateTextView;
     private LinearLayout setTimeLinearLayout;
     private TextView setTimeTextView;
-    private Button setDurationButton;
+   // private Button setDurationButton;
     private RecyclerView notificationsRecyclerView;
     private TextView addNotificationTextView;
     private TextView repeatTextView;
@@ -212,7 +212,7 @@ public class NewEventActivity extends AppCompatActivity {
         setDateTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetDate);
         setTimeLinearLayout = (LinearLayout) findViewById(R.id.AddNewEventActivity_LinearLayout_SetTime);
         setTimeTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetTime);
-        setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
+       // setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
         notificationsRecyclerView = (RecyclerView) findViewById(R.id.AddNewEventActivity_RecyclerView_Notifications);
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
@@ -343,13 +343,13 @@ public class NewEventActivity extends AppCompatActivity {
                 setTime(view);
             }
         });
-
+/*
         setDurationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setDuration(view);
             }
-        });
+        });*/
 
         addNotificationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -398,7 +398,7 @@ public class NewEventActivity extends AppCompatActivity {
             }
         }); */
     }
-
+/*
     private void setDuration(View view) {
         Calendar calendar = Calendar.getInstance();
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DurationPickerTheme, new TimePickerDialog.OnTimeSetListener() {
@@ -411,6 +411,7 @@ public class NewEventActivity extends AppCompatActivity {
 
         timePickerDialog.show();
     }
+*/
 
     public void setTime(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -592,7 +593,7 @@ public class NewEventActivity extends AppCompatActivity {
         event.setMonth(Utils.monthFormat.format(aDate));
         event.setYear(Utils.yearFormat.format(aDate));
         event.setTime(setTimeTextView.getText().toString());
-        event.setDuration(setDurationButton.getText().toString());
+      //  event.setDuration(setDurationButton.getText().toString());
         event.setNotify(!notifications.isEmpty());
         event.setRecurring(isRecurring(repeatTextView.getText().toString()));
         event.setRecurringPeriod(repeatTextView.getText().toString());
@@ -606,6 +607,23 @@ public class NewEventActivity extends AppCompatActivity {
         //event.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
         //event.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
        // event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
+
+        /*
+
+                   <Button
+                                android:id="@+id/AddNewEventActivity_Button_Duration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:background="?mainColor"
+
+                                android:text="@string/duration_0_hours_0_minutes"
+                                android:textColor="@color/white" />
+
+
+        */
 
     }
 

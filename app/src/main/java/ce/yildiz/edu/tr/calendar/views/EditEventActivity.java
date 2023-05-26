@@ -212,7 +212,7 @@ public class EditEventActivity extends AppCompatActivity {
         setDateTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetDate);
         setTimeLinearLayout = (LinearLayout) findViewById(R.id.AddNewEventActivity_LinearLayout_SetTime);
         setTimeTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetTime);
-        setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
+       // setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
         notificationsRecyclerView = (RecyclerView) findViewById(R.id.AddNewEventActivity_RecyclerView_Notifications);
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
