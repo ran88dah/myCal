@@ -201,6 +201,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
 
 
                     return true;
+                  /*
                 case R.id.Popup_Item_Share:
                     intent = new Intent();
                     intent.setAction(Intent.ACTION_SEND);
@@ -222,7 +223,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
                     intent.putExtra(Intent.EXTRA_TEXT, message);
 
                     upcomingEventsFragment.startActivity(Intent.createChooser(intent, "Send Email"));
-                    return true;
+                    return true;*/
             }
 
             return false;
