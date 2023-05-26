@@ -17,6 +17,9 @@ public class Event {
     private int color;
     private String location;
     private String phoneNumber;
+
+    public String priority; //toDB
+    public String type; //toDB
     private String mail;
     private int parentId;
 

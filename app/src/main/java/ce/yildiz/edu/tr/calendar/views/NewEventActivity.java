@@ -115,6 +115,7 @@ public class NewEventActivity extends AppCompatActivity {
 
 
     SeekBar seekBar;
+    String priority;
     TextView textView;
     String clickedTypeName;
     public ArrayList<typeItem> mTpyList;
@@ -160,6 +161,7 @@ public class NewEventActivity extends AppCompatActivity {
 
         //==========================SEEKBAR==========================
         seekBar = findViewById(R.id.seekbar);
+
         //textView = findViewById(R.id.textView2);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -167,14 +169,17 @@ public class NewEventActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         //textView.setText("Low");
+                        priority="low";
                         Toast.makeText(NewEventActivity.this,"Low", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                        // textView.setText("Medium");
+                        priority="Medium";
                         Toast.makeText(NewEventActivity.this,"Medium", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
                         //textView.setText("High");
+                        priority="High";
                         Toast.makeText(NewEventActivity.this,"High", Toast.LENGTH_LONG).show();
                         break;
                     default:
@@ -598,6 +603,8 @@ public class NewEventActivity extends AppCompatActivity {
         event.setRecurring(isRecurring(repeatTextView.getText().toString()));
         event.setRecurringPeriod(repeatTextView.getText().toString());
         event.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
+        event.priority=priority;
+        event.type= clickedTypeName ;
         /*if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
             event.setColor(notColor);

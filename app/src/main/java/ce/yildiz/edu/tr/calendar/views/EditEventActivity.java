@@ -113,8 +113,10 @@ public class EditEventActivity extends AppCompatActivity {
     private int oldEventId;
     private NotificationAdapter notificationAdapter;
     private Event mEvent;
-
+    String priority;
     //EVENT TYPE
+
+    String clickedTypeName;
     Spinner spinnerType;
     String Type;
     public ArrayList<typeItem> mTpyList;
@@ -149,7 +151,7 @@ public class EditEventActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 typeItem clickedItem = (typeItem) adapterView.getItemAtPosition(i);
-                String clickedTypeName = clickedItem.getTypeName();
+                clickedTypeName = clickedItem.getTypeName();
                 //Toast.makeText(this,clickedTypeName+" selected",Toast.LENGTH_SHORT).show();
             }
 
@@ -167,14 +169,17 @@ public class EditEventActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         //textView.setText("Low");
+                        priority="Low";
                         Toast.makeText(EditEventActivity.this,"Low", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         //textView.setText("Medium");
+                        priority="Medium";
                         Toast.makeText(EditEventActivity.this,"Medium", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
                         //textView.setText("High");
+                        priority="High";
                         Toast.makeText(EditEventActivity.this,"High", Toast.LENGTH_LONG).show();
                         break;
                     default:
@@ -683,6 +688,8 @@ public class EditEventActivity extends AppCompatActivity {
         mEvent.setRecurring(isRecurring(repeatTextView.getText().toString()));
         mEvent.setRecurringPeriod(repeatTextView.getText().toString());
         mEvent.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
+        //mEvent.priority=priority;
+        //mEvent.type= ;
         if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
         } else {
