@@ -140,12 +140,12 @@ public class EditEventActivity extends AppCompatActivity {
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
         pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-        eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-        locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-        phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
-        mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
-        mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
-        mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
+     //   eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
+    //  locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
+     // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
+     //   mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
+     //   mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
+        //mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
 
         progressBar = (ProgressBar) findViewById(R.id.AddNewEventActivity_ProgressBar);
         toolbar = (Toolbar) findViewById(R.id.AddNewEventActivity_Toolbar);
@@ -187,11 +187,11 @@ public class EditEventActivity extends AppCompatActivity {
         GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
         bgShape.setColor(mEvent.getColor());
 
-        eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
+       // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
 
-        phoneNumberTextInputLayout.getEditText().setText(mEvent.getPhoneNumber());
+      //  phoneNumberTextInputLayout.getEditText().setText(mEvent.getPhoneNumber());
 
-        if (mEvent.getMail() == null | "".equals(mEvent.getMail())) {
+      /*  if (mEvent.getMail() == null | "".equals(mEvent.getMail())) {
             mailSwitch.setChecked(false);
             mailTextInputEditText.setText("");
             mailTextInputEditText.setEnabled(false);
@@ -201,7 +201,7 @@ public class EditEventActivity extends AppCompatActivity {
             mailTextInputEditText.setEnabled(true);
             mailTextInputLayout.setEnabled(true);
             mailTextInputLayout.getEditText().setText(mEvent.getMail());
-        }
+        }*/
     }
 
     private void initVariables() {
@@ -321,6 +321,9 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
+        //LOCATION WONT BE USED
+
+        /*
         locationImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -330,9 +333,9 @@ public class EditEventActivity extends AppCompatActivity {
                     startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
                 }
             }
-        });
-
-        mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        }); */
+   //MAIL WONT BE USED
+    /*    mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
@@ -345,7 +348,7 @@ public class EditEventActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });  */
     }
 
     private Event readEvent(int eventId) {
@@ -607,9 +610,9 @@ public class EditEventActivity extends AppCompatActivity {
         } else {
             mEvent.setColor(notColor);
         }
-        mEvent.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
-        mEvent.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
-        mEvent.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
+       // mEvent.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
+       // mEvent.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
+       // mEvent.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
 
     }
 
@@ -719,7 +722,7 @@ public class EditEventActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         return sharedPreferences.getString(key, "Indigo");
     }
-
+/*
     private void getLocationPermission() {
         mLocationPermissionGranted = false;
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -742,7 +745,7 @@ public class EditEventActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }   */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

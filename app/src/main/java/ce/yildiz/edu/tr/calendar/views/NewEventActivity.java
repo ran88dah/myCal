@@ -91,8 +91,8 @@ public class NewEventActivity extends AppCompatActivity {
     private TextInputLayout eventLocationTextInputLayout;
     private ImageButton locationImageButton;
     private TextInputLayout phoneNumberTextInputLayout;
-    private TextInputLayout mailTextInputLayout;
-    private TextInputEditText mailTextInputEditText;
+    //private TextInputLayout mailTextInputLayout;
+   // private TextInputEditText mailTextInputEditText;
     private Switch mailSwitch;
 
     private boolean mLocationPermissionGranted;
@@ -139,12 +139,12 @@ public class NewEventActivity extends AppCompatActivity {
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
         pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-        eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-        locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-        phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
-        mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
-        mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
-        mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
+      //  eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
+       // locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
+       // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
+       // mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
+       // mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
+       // mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
 
         progressBar = (ProgressBar) findViewById(R.id.AddNewEventActivity_ProgressBar);
         toolbar = (Toolbar) findViewById(R.id.AddNewEventActivity_Toolbar);
@@ -290,7 +290,7 @@ public class NewEventActivity extends AppCompatActivity {
                 pickNoteColor(view);
             }
         });
-
+/*
         locationImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -300,8 +300,8 @@ public class NewEventActivity extends AppCompatActivity {
                     startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
                 }
             }
-        });
-
+        }); */
+/*
         mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -315,7 +315,7 @@ public class NewEventActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        }); */
     }
 
     private void setDuration(View view) {
@@ -522,7 +522,7 @@ public class NewEventActivity extends AppCompatActivity {
         }
         event.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
         event.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
-        event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
+       // event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
 
     }
 
