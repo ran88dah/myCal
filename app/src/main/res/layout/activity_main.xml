@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/MainActivity_BottomNavigation"
-        android:background="@color/darkIndigo"
+        android:background="?attr/mainColor"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="1dp" />

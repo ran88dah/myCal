@@ -51,11 +51,25 @@
 
     <Button
         android:id="@+id/AlertDialog_Button_AddEvent"
-        android:layout_width="match_parent"
+        android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:background="?attr/mainColor"
         android:text="@string/add_event"
+
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/alertDialog_Button_Dissmiss"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="-48.5dp"
+        android:layout_weight="0"
+        android:background="@color/dismiss"
+        android:text="     Dismiss"
         android:textColor="@color/white"
         android:textSize="18sp" />
 </LinearLayout>

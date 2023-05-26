@@ -60,7 +60,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/headViewColor"
+        android:background="@color/calender"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="15dp">

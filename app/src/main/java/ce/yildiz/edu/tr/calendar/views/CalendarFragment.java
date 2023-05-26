@@ -57,6 +57,7 @@ public class CalendarFragment extends Fragment {
     // AlertDialog components
     public RecyclerView savedEventsRecyclerView;
     private Button addNewEventButton;
+    private Button DismissEventButton;
     private TextView noEventTextView;
 
     private AlertDialog alertDialog;
@@ -129,6 +130,8 @@ public class CalendarFragment extends Fragment {
                 savedEventsRecyclerView = (RecyclerView) dialogView.findViewById(R.id.AlertDialog_RecyclerView_ListEvents);
                 addNewEventButton = (Button) dialogView.findViewById(R.id.AlertDialog_Button_AddEvent);
                 noEventTextView = (TextView) dialogView.findViewById(R.id.AlertDialog_TextView_NoEvent);
+                addNewEventButton = (Button) dialogView.findViewById(R.id.AlertDialog_Button_AddEvent);
+                DismissEventButton = (Button) dialogView.findViewById(R.id.alertDialog_Button_Dissmiss);
 
 
                 final String date = Utils.eventDateFormat.format(dates.get(position));
@@ -137,7 +140,7 @@ public class CalendarFragment extends Fragment {
                 if (eventsByDate.isEmpty()) {
                     savedEventsRecyclerView.setVisibility(View.INVISIBLE);
                     noEventTextView.setVisibility(View.VISIBLE);
-                    addNewEventButton.setText("CREATE EVENT");
+                    addNewEventButton.setText("ADD EVENT");
                 } else {
                     savedEventsRecyclerView.setVisibility(View.VISIBLE);
                     noEventTextView.setVisibility(View.GONE);
@@ -157,6 +160,14 @@ public class CalendarFragment extends Fragment {
                         Intent intent = new Intent(getContext(), NewEventActivity.class);
                         intent.putExtra("date", date);
                         startActivityForResult(intent, ADD_NEW_EVENT_ACTIVITY_REQUEST_CODE);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                DismissEventButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
                         alertDialog.dismiss();
                     }
                 });
