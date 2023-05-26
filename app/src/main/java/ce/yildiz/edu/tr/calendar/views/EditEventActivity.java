@@ -371,12 +371,12 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        setDurationButton.setOnClickListener(new View.OnClickListener() {
+      /*  setDurationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setDuration(view);
             }
-        });
+        });  */
 
         addNotificationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -453,7 +453,7 @@ public class EditEventActivity extends AppCompatActivity {
         return notifications;
     }
 
-
+/*
     private void setDuration(View view) {
         Calendar calendar = Calendar.getInstance();
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DurationPickerTheme, new TimePickerDialog.OnTimeSetListener() {
@@ -465,7 +465,7 @@ public class EditEventActivity extends AppCompatActivity {
         timePickerDialog.setTitle("Duration");
 
         timePickerDialog.show();
-    }
+    }  */
 
     public void setTime(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -678,7 +678,7 @@ public class EditEventActivity extends AppCompatActivity {
         mEvent.setMonth(Utils.monthFormat.format(aDate));
         mEvent.setYear(Utils.yearFormat.format(aDate));
         mEvent.setTime(setTimeTextView.getText().toString());
-        mEvent.setDuration(setDurationButton.getText().toString());
+       // mEvent.setDuration(setDurationButton.getText().toString());
         mEvent.setNotify(!notificationAdapter.getNotifications().isEmpty());
         mEvent.setRecurring(isRecurring(repeatTextView.getText().toString()));
         mEvent.setRecurringPeriod(repeatTextView.getText().toString());
