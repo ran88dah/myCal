@@ -28,6 +28,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -81,7 +83,7 @@ public class EditEventActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ProgressBar progressBar;
-    private TextInputLayout eventTitleTextInputLayout;
+    private TextInputLayout eventTitleTextInputLayout; //check
     private Switch allDayEventSwitch;
     private LinearLayout setDateLinearLayout;
     private TextView setDateTextView;
@@ -122,7 +124,7 @@ public class EditEventActivity extends AppCompatActivity {
     public ArrayList<typeItem> mTpyList;
     public typeAdapter mAdapter;
 
-
+    ImageView image;
     SeekBar seekBar;
     TextView textView;
 
@@ -244,6 +246,28 @@ public class EditEventActivity extends AppCompatActivity {
         oldEventId = mEvent.getId();
 
         eventTitleTextInputLayout.getEditText().setText(mEvent.getTitle());
+
+
+        seekBar = findViewById(R.id.seekbar);
+
+        switch (mEvent.priority) {
+            case "Low":
+                seekBar.setProgress(0);
+                break;
+            case "Medium":
+                seekBar.setProgress(1);
+                break;
+            case "High":
+                seekBar.setProgress(2);  //Toast.makeText(this, "hi",Toast.LENGTH_LONG).show();
+                break;
+        }
+
+
+        image= (ImageView) findViewById(R.id.LayoutCell_ImageView_EventColor);
+        if(mEvent.type.equals("Eid"))
+            Toast.makeText(this,"eid",Toast.LENGTH_LONG).show();//image.setImageResource(R.drawable.c4);
+        else if(mEvent.type.equals("Meeting"))
+            Toast.makeText(this,"meet",Toast.LENGTH_LONG).show(); //image.setImageResource(R.drawable.c4);
 
         setDateTextView.setText(intent.getStringExtra("eventDate"));
 
