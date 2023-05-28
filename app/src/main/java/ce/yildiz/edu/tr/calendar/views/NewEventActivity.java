@@ -110,12 +110,14 @@ public class NewEventActivity extends AppCompatActivity {
     private List<Notification> notifications;
     private Event event;
     //EVENT TYPE
-    Spinner spinnerType;
+   // Spinner spinnerType;
     String Type;
 
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
     SeekBar seekBar;
-    String priority;
+    String priority="Low";
     TextView textView;
     String clickedTypeName;
     public ArrayList<typeItem> mTpyList;
@@ -136,13 +138,26 @@ public class NewEventActivity extends AppCompatActivity {
         initVariables();
         createAlertDialogs();
         defineListeners();
+        radioGroup = findViewById(R.id.radioGroup);
+        //textView = findViewById(R.id.text_view_selected);
 
+        Button buttonApply = findViewById(R.id.button_apply);
+        buttonApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int radioId = radioGroup.getCheckedRadioButtonId();
+
+                radioButton = findViewById(radioId);
+
+                //textView.setText("Your choice: " + radioButton.getText());
+            }
+        });
         setSupportActionBar(toolbar);
 
 
         initList();
-        spinnerType = findViewById(R.id.spinner);
-
+      //  spinnerType = findViewById(R.id.spinner);
+/*
         mAdapter = new typeAdapter(this,mTpyList);
         spinnerType.setAdapter(mAdapter);
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -158,7 +173,7 @@ public class NewEventActivity extends AppCompatActivity {
 
             }
         });
-
+*/
         //==========================SEEKBAR==========================
         seekBar = findViewById(R.id.seekbar);
 
@@ -169,7 +184,7 @@ public class NewEventActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         //textView.setText("Low");
-                        priority="low";
+                        priority="Low";
                         Toast.makeText(NewEventActivity.this,"Low", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
@@ -183,6 +198,7 @@ public class NewEventActivity extends AppCompatActivity {
                         Toast.makeText(NewEventActivity.this,"High", Toast.LENGTH_LONG).show();
                         break;
                     default:
+                        priority="Low";
                         break;
                 }
             }
@@ -197,6 +213,15 @@ public class NewEventActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void checkButton(View v) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+
+        Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
+                Toast.LENGTH_SHORT).show();
     }
     public void initList(){
         mTpyList = new ArrayList<>();
@@ -442,6 +467,7 @@ public class NewEventActivity extends AppCompatActivity {
 
     }
 
+
     public void setDate(View view) {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -592,6 +618,11 @@ public class NewEventActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.e(TAG, "An error has occurred while parsing the date string");
         }
+
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+
         event.setTitle(eventTitleTextInputLayout.getEditText().getText().toString().trim());
         event.setAllDay(allDayEventSwitch.isChecked());
         event.setDate(Utils.eventDateFormat.format(aDate));
@@ -604,8 +635,18 @@ public class NewEventActivity extends AppCompatActivity {
         event.setRecurringPeriod(repeatTextView.getText().toString());
         event.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
         event.priority=priority;
-        event.type= clickedTypeName ;
-        /*if (notColor == 0) {
+        event.type= (String) radioButton.getText();
+
+        /*
+
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+
+        Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
+                Toast.LENGTH_SHORT).show();
+
+        if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
             event.setColor(notColor);
         } else {

@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -118,6 +119,8 @@ public class EditEventActivity extends AppCompatActivity {
     String priority;
     //EVENT TYPE
 
+    RadioGroup radioGroup;
+    RadioButton radioButton;
     String clickedTypeName;
     Spinner spinnerType;
     String Type;
@@ -137,17 +140,31 @@ public class EditEventActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         defineViews();
+
         initViews();
         initVariables();
         createAlertDialogs();
         defineListeners();
+        radioGroup = findViewById(R.id.radioGroup);
+        //textView = findViewById(R.id.text_view_selected);
 
+        Button buttonApply = findViewById(R.id.button_apply);
+        buttonApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int radioId = radioGroup.getCheckedRadioButtonId();
+
+                radioButton = findViewById(radioId);
+
+                //textView.setText("Your choice: " + radioButton.getText());
+            }
+        });
         setSupportActionBar(toolbar);
 
         initList();
-        spinnerType = findViewById(R.id.spinner);
+        //spinnerType = findViewById(R.id.spinner);
 
-        mAdapter = new typeAdapter(this,mTpyList);
+  /*      mAdapter = new typeAdapter(this,mTpyList);
         spinnerType.setAdapter(mAdapter);
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -155,13 +172,15 @@ public class EditEventActivity extends AppCompatActivity {
                 typeItem clickedItem = (typeItem) adapterView.getItemAtPosition(i);
                 clickedTypeName = clickedItem.getTypeName();
                 //Toast.makeText(this,clickedTypeName+" selected",Toast.LENGTH_SHORT).show();
+
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 //==========================SEEKBAR==========================
         seekBar = findViewById(R.id.seekbar);
         //textView = findViewById(R.id.textView2);
@@ -191,7 +210,6 @@ public class EditEventActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
@@ -201,6 +219,15 @@ public class EditEventActivity extends AppCompatActivity {
         });
 
     }
+
+    public void checkButton(View v) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+
+        Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
+                Toast.LENGTH_SHORT).show();
+    }
     public void initList(){
         mTpyList = new ArrayList<>();
         mTpyList.add(new typeItem("Eid",R.drawable.c1));
@@ -209,7 +236,6 @@ public class EditEventActivity extends AppCompatActivity {
         mTpyList.add(new typeItem("Meeting",R.drawable.c4));
         mTpyList.add(new typeItem("Salary",R.drawable.c5));
         mTpyList.add(new typeItem("Others",R.drawable.c6));
-
     }
 
     private void defineViews() {
@@ -250,6 +276,9 @@ public class EditEventActivity extends AppCompatActivity {
 
         seekBar = findViewById(R.id.seekbar);
 
+        if(mEvent.priority==null)
+            mEvent.priority="Low";
+
         switch (mEvent.priority) {
             case "Low":
                 seekBar.setProgress(0);
@@ -260,14 +289,62 @@ public class EditEventActivity extends AppCompatActivity {
             case "High":
                 seekBar.setProgress(2);  //Toast.makeText(this, "hi",Toast.LENGTH_LONG).show();
                 break;
+            default:
+                seekBar.setProgress(0);
+                break;
+        }
+
+        switch (mEvent.type) {
+            case "Travel":
+                radioButton = findViewById(R.id.radio_one);
+                radioButton.setChecked(true);
+                break;
+            case "Meeting":
+                radioButton = findViewById(R.id.radio_two);
+                radioButton.setChecked(true);
+                break;
+            case "Salary":
+                radioButton = findViewById(R.id.radio_three);
+                radioButton.setChecked(true);
+                break;
+            case "Others":
+                radioButton = findViewById(R.id.radio_four);
+                radioButton.setChecked(true);
+                break;
         }
 
 
-        image= (ImageView) findViewById(R.id.LayoutCell_ImageView_EventColor);
+     /* image= findViewById(R.id.img_view1);
         if(mEvent.type.equals("Eid"))
             Toast.makeText(this,"eid",Toast.LENGTH_LONG).show();//image.setImageResource(R.drawable.c4);
-        else if(mEvent.type.equals("Meeting"))
-            Toast.makeText(this,"meet",Toast.LENGTH_LONG).show(); //image.setImageResource(R.drawable.c4);
+        else
+            image.setImageResource(R.drawable.c4);
+        */  //   Toast.makeText(this,"meet",Toast.LENGTH_LONG).show(); //
+
+      /*
+        for(int i = 0; i < spinnerType.getCount(); i++) {
+            if (spinnerType.getItemAtPosition(i).toString().equals(myString)) {
+                spinnerType.setSelection(i,true);
+                break;
+            }
+        }   spinnerType = findViewById(R.id.spinner);
+        String myString = "Meeting";
+        ArrayAdapter myAdapter = (ArrayAdapter) spinnerType.getAdapter(); //cast to an ArrayAdapter
+        int spinnerPosition = myAdapter.getPosition(myString);
+        spinnerType.setSelection(spinnerPosition); */
+
+
+
+  /* */
+      /*   //the value you want the position for
+
+        ArrayAdapter myAdapter = (ArrayAdapter) spinnerType.getAdapter(); //cast to an ArrayAdapter
+
+        int spinnerPosition = myAdapter.getPosition(myString);
+
+//set the default according to the value
+        spinnerType.setSelection(spinnerPosition);
+        spinnerType.setSelection(myAdapter.getPosition(myString)); */
 
         setDateTextView.setText(intent.getStringExtra("eventDate"));
 
@@ -292,7 +369,7 @@ public class EditEventActivity extends AppCompatActivity {
         eventNoteTextInputLayout.getEditText().setText(mEvent.getNote());
 
         //GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
-        //bgShape.setColor(mEvent.getColor());
+       // bgShape.setColor(R.color.red);
 
        // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
 

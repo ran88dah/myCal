@@ -171,7 +171,12 @@ public class DBHelper extends SQLiteOpenHelper {
             event.priority= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_LOCATION));
             event.type= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_PHONE_NUMBER));
             event.setMail(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_MAIL)));
+            if(event.type !=null && event.type.equals("Meeting"))
+                event.setColor(0xc2dad6);
         }
+
+
+
         return event;
     }
 

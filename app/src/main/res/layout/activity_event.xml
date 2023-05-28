@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -420,16 +421,51 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp">
-                            <Spinner
-                                android:id="@+id/spinner"
-                                android:layout_width="500dp"
-                                android:layout_height="50dp"
-                                android:background="@drawable/custom_dialog_background"
-                                android:entries="@array/Type"
-                                app:layout_constraintVertical_bias="0.48"
-                                android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true"/>
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:id="@+id/radioGroup">
 
+                                <RadioButton
+                                    android:id="@+id/radio_one"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Travel"
+                                    android:onClick="checkButton"
+                                    android:checked="true"/>
+
+                                <RadioButton
+                                    android:id="@+id/radio_two"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Meeting"
+                                    android:onClick="checkButton"/>
+
+                                <RadioButton
+                                    android:id="@+id/radio_three"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Salary"
+                                    android:onClick="checkButton"/>
+
+                                <RadioButton
+                                    android:id="@+id/radio_four"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Others"
+                                    android:onClick="checkButton"/>
+
+                            </RadioGroup>
+                            <Button
+                                android:id="@+id/button_apply"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/text_view_selected"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="167dp"
+                                android:text="apply"
+                                tools:ignore="UnknownId" />
                         </RelativeLayout>
 
 
