@@ -124,8 +124,8 @@ public class EditEventActivity extends AppCompatActivity {
     String clickedTypeName;
     Spinner spinnerType;
     String Type;
-    public ArrayList<typeItem> mTpyList;
-    public typeAdapter mAdapter;
+    /*public ArrayList<typeItem> mTpyList;
+    public typeAdapter mAdapter;*/
 
     ImageView image;
     SeekBar seekBar;
@@ -161,7 +161,7 @@ public class EditEventActivity extends AppCompatActivity {
         });
         setSupportActionBar(toolbar);
 
-        initList();
+        //initList();
         //spinnerType = findViewById(R.id.spinner);
 
   /*      mAdapter = new typeAdapter(this,mTpyList);
@@ -228,7 +228,7 @@ public class EditEventActivity extends AppCompatActivity {
         Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
                 Toast.LENGTH_SHORT).show();
     }
-    public void initList(){
+    /*public void initList(){
         mTpyList = new ArrayList<>();
         mTpyList.add(new typeItem("Eid",R.drawable.c1));
         mTpyList.add(new typeItem("Birthday",R.drawable.c2));
@@ -236,7 +236,7 @@ public class EditEventActivity extends AppCompatActivity {
         mTpyList.add(new typeItem("Meeting",R.drawable.c4));
         mTpyList.add(new typeItem("Salary",R.drawable.c5));
         mTpyList.add(new typeItem("Others",R.drawable.c6));
-    }
+    }*/
 
     private void defineViews() {
         eventTitleTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_EventTitle);
@@ -250,7 +250,7 @@ public class EditEventActivity extends AppCompatActivity {
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
-       // pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
+        pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
      //   eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
     //  locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
      // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
@@ -368,8 +368,8 @@ public class EditEventActivity extends AppCompatActivity {
 
         eventNoteTextInputLayout.getEditText().setText(mEvent.getNote());
 
-        //GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
-       // bgShape.setColor(R.color.red);
+        GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
+        bgShape.setColor(R.color.red);
 
        // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
 
@@ -498,12 +498,12 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-       /* pickNoteColorTextView.setOnClickListener(new View.OnClickListener() {
+        pickNoteColorTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pickNoteColor(view);
             }
-        });*/
+        });
 
         //LOCATION WONT BE USED
 
@@ -626,7 +626,7 @@ public class EditEventActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    /*public void pickNoteColor(View view) {
+    public void pickNoteColor(View view) {
         final ArrayList<String> colors = Utils.getColors(this);
         ColorPicker colorPicker = new ColorPicker(this);
         colorPicker
@@ -646,7 +646,7 @@ public class EditEventActivity extends AppCompatActivity {
 
                     }
                 }).show();
-    }*/
+    }
 
     private void setUpRecyclerView() {
         notificationsRecyclerView.setHasFixedSize(true);
