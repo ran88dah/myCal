@@ -251,9 +251,9 @@ public class EditEventActivity extends AppCompatActivity {
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
         pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-     //   eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-    //  locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-     // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
+       // eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
+      // locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
+      // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
      //   mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
      //   mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
         //mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
@@ -372,9 +372,13 @@ public class EditEventActivity extends AppCompatActivity {
         bgShape.setColor( mEvent.getColor());
 
 
-       // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
+        //RETRIEVING
 
-      //  phoneNumberTextInputLayout.getEditText().setText(mEvent.getPhoneNumber());
+      //  eventLocationTextInputLayout.getEditText().setText(mEvent.getPriority());
+       // phoneNumberTextInputLayout.getEditText().setText(mEvent.getType());
+      // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
+
+      // phoneNumberTextInputLayout.getEditText().setText(mEvent.getPhoneNumber());
 
       /*  if (mEvent.getMail() == null | "".equals(mEvent.getMail())) {
             mailSwitch.setChecked(false);

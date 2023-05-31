@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="131dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -75,6 +75,21 @@
                     android:text="Don't forget to buy a gift"
                     android:textColor="?attr/textColor" />
 
+
+                <TextView
+                    android:id="@+id/LayoutCell_TextView_EventPriorty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PRIORITY"
+                    android:textColor="?attr/textColor" />
+
+                <TextView
+                    android:id="@+id/LayoutCell_TextView_EventType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TYPE"
+                    android:textColor="?attr/textColor" />
+
             </LinearLayout>
 
             <RelativeLayout
@@ -99,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="50dp"
                     android:background="@color/white"
                     app:srcCompat="@drawable/ic_small_notification" />
 

@@ -87,6 +87,15 @@ public class Event {
         this.duration = duration;
     }
 
+    ///added by sarah
+    public String getPriority() {
+        return priority;
+    }
+    public String getType() {
+        return type;
+    }
+
+
     public boolean isNotify() {
         return isNotify;
     }

@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="128dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -124,6 +124,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Don't forget to buy a gift"
+                    android:textColor="?attr/textColor" />
+
+                <TextView
+                    android:id="@+id/LayoutCell_TextView_EventPriorty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PRIORITY"
+                    android:textColor="?attr/textColor" />
+
+                <TextView
+                    android:id="@+id/LayoutCell_TextView_EventType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TYPE"
                     android:textColor="?attr/textColor" />
 
             </LinearLayout>

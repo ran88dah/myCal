@@ -119,6 +119,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.eventTitleTextView.setText(event.getTitle());
         holder.eventTimeTextView.setText(event.getTime());
         holder.eventNoteTextView.setText(event.getNote());
+        holder.eventNoteTextView.setText(event.getNote());
+       holder.eventNoteTextView.setText(event.getNote());
+       //new by sarah
+       holder.eventPriortyTextView.setText(event.getPriority());
+       holder.eventTypeTextView.setText(event.getType());
+
 
         holder.eventCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +174,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         private TextView eventTitleTextView;
         private TextView eventTimeTextView;
         private TextView eventNoteTextView;
+
+        //added by sarah
+        private TextView eventPriortyTextView;
+        private TextView eventTypeTextView;
+        //private TextView eventDateTextView;
         private ImageButton optionsImageButton;
         private ImageButton notificationImageButton;
         private LinearLayout eventTimeLinearLayout;
@@ -183,6 +194,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             optionsImageButton = (ImageButton) itemView.findViewById(R.id.LayoutCell_ImageButton_Options);
             notificationImageButton = (ImageButton) itemView.findViewById(R.id.LayoutCell_ImageButton_Notification);
             eventTimeLinearLayout = (LinearLayout) itemView.findViewById(R.id.LayoutCell_LinearLayout_EventTime);
+//added by sarah
+            eventPriortyTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventPriorty);
+            eventTypeTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventType);
+          // eventDateTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventDate);
         }
     }
 
