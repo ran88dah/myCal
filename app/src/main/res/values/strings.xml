@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyCal</string>
+    <string name="app_name">Event Notifier</string>
     <string name="current_date">Current Date</string>
     <string name="mon">Mon</string>
     <string name="tue">Tue</string>
