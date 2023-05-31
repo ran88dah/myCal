@@ -121,7 +121,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_MONTH, event.getMonth());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_YEAR, event.getYear());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_TIME, event.getTime());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_DURATION, event.getDuration());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY, event.isNotify() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR, event.getColor());
@@ -205,7 +204,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_MONTH,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_YEAR,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_TIME,
-                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_DURATION,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE,
@@ -351,7 +349,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_MONTH, event.getDate());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_YEAR, event.getYear());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_TIME, event.getTime());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_DURATION, event.getDuration());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY, event.isNotify() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING, event.isRecurring() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());

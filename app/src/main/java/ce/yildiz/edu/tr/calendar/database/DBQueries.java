@@ -36,7 +36,6 @@ public class DBQueries {
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_MONTH + " TEXT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_YEAR + " TEXT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_TIME + " TEXT, "
-                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_DURATION + " TEXT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY + " INT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING + " INT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE + " TEXT, "

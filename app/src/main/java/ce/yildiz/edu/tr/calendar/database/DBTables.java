@@ -44,7 +44,6 @@ public class DBTables {
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_MONTH = "month";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_YEAR = "year";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_TIME = "time";
-    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_DURATION = "duration";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY = "is_notify";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING = "is_recurring";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE = "note";
@@ -55,7 +54,6 @@ public class DBTables {
 
     // Notification Table
     public static final String NOTIFICATION_TABLE_NAME = "NOTIFICATION";
-
     public static final String NOTIFICATION_ID = "id";
     public static final String NOTIFICATION_EVENT_ID = "event_id";
     public static final String NOTIFICATION_TIME = "time";
