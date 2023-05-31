@@ -6,7 +6,6 @@ public class DBTables {
 
     // Event Table
     public static final String EVENT_TABLE_NAME = "EVENT";
-
     public static final String EVENT_ID = "id";
     public static final String EVENT_TITLE = "title";
     public static final String EVENT_IS_ALL_DAY = "is_allDay";
@@ -14,14 +13,13 @@ public class DBTables {
     public static final String EVENT_MONTH = "month";
     public static final String EVENT_YEAR = "year";
     public static final String EVENT_TIME = "time";
-    public static final String EVENT_DURATION = "duration";
     public static final String EVENT_IS_NOTIFY = "is_notify";
     public static final String EVENT_IS_RECURRING = "is_recurring";
     public static final String EVENT_NOTE = "note";
     public static final String EVENT_COLOR = "color";
-    public static final String EVENT_LOCATION = "location";
-    public static final String EVENT_PHONE_NUMBER = "number";
-    public static final String EVENT_MAIL = "mail";
+    public static final String EVENT_PRIORITY = "priority";
+    public static final String EVENT_TYPE= "Etype";
+
     public static final String EVENT_PARENT_ID = "parent_id"; // foreign key to Event Instance Exception Table
 
     // Recurring Pattern Table
@@ -51,9 +49,8 @@ public class DBTables {
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING = "is_recurring";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE = "note";
     public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR = "color";
-    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_LOCATION = "location";
-    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PHONE_NUMBER = "number";
-    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_MAIL = "mail";
+    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY = "priority";
+    public static final String EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE = "Etype";
 
 
     // Notification Table

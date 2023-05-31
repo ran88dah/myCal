@@ -10,14 +10,12 @@ public class DBQueries {
                     + DBTables.EVENT_MONTH + " TEXT, "
                     + DBTables.EVENT_YEAR + " TEXT,"
                     + DBTables.EVENT_TIME + " TEXT, "
-                    + DBTables.EVENT_DURATION + " TEXT,"
                     + DBTables.EVENT_IS_NOTIFY + " INT,"
                     + DBTables.EVENT_IS_RECURRING + " INT,"
                     + DBTables.EVENT_NOTE + " TEXT,"
                     + DBTables.EVENT_COLOR + " INTEGER,"
-                    + DBTables.EVENT_LOCATION + " TEXT,"
-                    + DBTables.EVENT_PHONE_NUMBER + " TEXT,"
-                    + DBTables.EVENT_MAIL + " TEXT,"
+                    + DBTables.EVENT_PRIORITY + " TEXT,"
+                    + DBTables.EVENT_TYPE + " TEXT,"
                     + DBTables.EVENT_PARENT_ID + " TEXT)";
 
     public static final String CREATE_RECURRING_PATTERN_TABLE =
@@ -43,9 +41,8 @@ public class DBQueries {
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING + " INT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE + " TEXT, "
                     + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR + " TEXT, "
-                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_LOCATION + " TEXT, "
-                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PHONE_NUMBER + " TEXT, "
-                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_MAIL + " TEXT)";
+                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY+ " TEXT, "
+                    + DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE + " TEXT) ";
 
     public static final String CREATE_NOTIFICATION_TABLE =
             "CREATE TABLE " + DBTables.NOTIFICATION_TABLE_NAME + " (" + DBTables.NOTIFICATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "

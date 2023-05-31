@@ -98,14 +98,12 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_MONTH, event.getMonth());
         contentValues.put(DBTables.EVENT_YEAR, event.getYear());
         contentValues.put(DBTables.EVENT_TIME, event.getTime());
-        contentValues.put(DBTables.EVENT_DURATION, event.getDuration());
         contentValues.put(DBTables.EVENT_IS_NOTIFY, event.isNotify() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_IS_RECURRING, event.isRecurring() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_LOCATION, event.priority);
-        contentValues.put(DBTables.EVENT_PHONE_NUMBER, event.type);
-        contentValues.put(DBTables.EVENT_MAIL, event.getMail());
+        contentValues.put(DBTables.EVENT_PRIORITY, event.priority);
+        contentValues.put(DBTables.EVENT_TYPE, event.type);
         contentValues.put(DBTables.EVENT_PARENT_ID, -1);
 
         return (int) sqLiteDatabase.insert(DBTables.EVENT_TABLE_NAME, null, contentValues);
@@ -127,9 +125,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY, event.isNotify() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_LOCATION, event.priority);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PHONE_NUMBER, event.type);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_MAIL, event.getMail());
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.priority);
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.type);
 
         return (int) sqLiteDatabase.insert(DBTables.EVENT_INSTANCE_EXCEPTION_TABLE_NAME, null, contentValues);
 
@@ -163,16 +160,14 @@ public class DBHelper extends SQLiteOpenHelper {
             event.setMonth(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_MONTH)));
             event.setYear(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_YEAR)));
             event.setTime(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_TIME)));
-            event.setDuration(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_DURATION)));
             event.setNotify(cursor.getInt(cursor.getColumnIndex(DBTables.EVENT_IS_NOTIFY)) == TRUE);
             event.setRecurring(cursor.getInt(cursor.getColumnIndex(DBTables.EVENT_IS_RECURRING)) == TRUE);
             event.setNote(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_NOTE)));
             event.setColor(cursor.getInt(cursor.getColumnIndex(DBTables.EVENT_COLOR)));
-            event.priority= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_LOCATION));
-            event.type= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_PHONE_NUMBER));
-            event.setMail(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_MAIL)));
-            if(event.type !=null && event.type.equals("Meeting"))
-                event.setColor(0xc2dad6);
+            event.priority= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_PRIORITY));
+            event.type= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_TYPE));
+           /* if(event.type !=null && event.type.equals("Meeting"))
+                event.setColor(0xc2dad6);*/
         }
 
 
@@ -215,9 +210,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE,
                 DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR,
-                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_LOCATION,
-                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PHONE_NUMBER,
-                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_MAIL};
+                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY,
+                DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE};
 
         String where = DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_ID + "=?";
         String[] whereArgs = {Integer.toString(eventId)};
@@ -233,14 +227,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 DBTables.EVENT_MONTH,
                 DBTables.EVENT_YEAR,
                 DBTables.EVENT_TIME,
-                DBTables.EVENT_DURATION,
                 DBTables.EVENT_IS_NOTIFY,
                 DBTables.EVENT_IS_RECURRING,
                 DBTables.EVENT_NOTE,
                 DBTables.EVENT_COLOR,
-                DBTables.EVENT_LOCATION,
-                DBTables.EVENT_PHONE_NUMBER,
-                DBTables.EVENT_MAIL,
+                DBTables.EVENT_PRIORITY,
+                DBTables.EVENT_TYPE,
                 DBTables.EVENT_PARENT_ID};
         String where = DBTables.EVENT_ID + "=?";
         String[] whereArgs = {Integer.toString(eventId)};
@@ -364,9 +356,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING, event.isRecurring() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_LOCATION, event.priority);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PHONE_NUMBER, event.type);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_MAIL, event.getMail());
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.priority);
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.type);
 
         String where = DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_ID + "=?";
         String[] whereArgs = {Integer.toString(eventId)};
