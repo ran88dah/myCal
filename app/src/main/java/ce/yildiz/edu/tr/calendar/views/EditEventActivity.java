@@ -369,7 +369,8 @@ public class EditEventActivity extends AppCompatActivity {
         eventNoteTextInputLayout.getEditText().setText(mEvent.getNote());
 
         GradientDrawable bgShape = (GradientDrawable) pickNoteColorTextView.getBackground();
-        bgShape.setColor(R.color.red);
+        bgShape.setColor( mEvent.getColor());
+
 
        // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
 
