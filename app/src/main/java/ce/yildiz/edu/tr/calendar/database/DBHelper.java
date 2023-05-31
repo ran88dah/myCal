@@ -102,8 +102,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_IS_RECURRING, event.isRecurring() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_PRIORITY, event.priority);
-        contentValues.put(DBTables.EVENT_TYPE, event.type);
+        contentValues.put(DBTables.EVENT_PRIORITY, event.getPriority());
+        contentValues.put(DBTables.EVENT_TYPE, event.getType());
         contentValues.put(DBTables.EVENT_PARENT_ID, -1);
 
         return (int) sqLiteDatabase.insert(DBTables.EVENT_TABLE_NAME, null, contentValues);
@@ -124,8 +124,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_NOTIFY, event.isNotify() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.priority);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.type);
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.getPriority());
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.getType());
 
         return (int) sqLiteDatabase.insert(DBTables.EVENT_INSTANCE_EXCEPTION_TABLE_NAME, null, contentValues);
 
@@ -163,8 +163,8 @@ public class DBHelper extends SQLiteOpenHelper {
             event.setRecurring(cursor.getInt(cursor.getColumnIndex(DBTables.EVENT_IS_RECURRING)) == TRUE);
             event.setNote(cursor.getString(cursor.getColumnIndex(DBTables.EVENT_NOTE)));
             event.setColor(cursor.getInt(cursor.getColumnIndex(DBTables.EVENT_COLOR)));
-            event.priority= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_PRIORITY));
-            event.type= cursor.getString(cursor.getColumnIndex(DBTables.EVENT_TYPE));
+            event.setPriority( cursor.getString(cursor.getColumnIndex(DBTables.EVENT_PRIORITY)));
+            event.setType( cursor.getString(cursor.getColumnIndex(DBTables.EVENT_TYPE)));
            /* if(event.type !=null && event.type.equals("Meeting"))
                 event.setColor(0xc2dad6);*/
         }
@@ -353,8 +353,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_IS_RECURRING, event.isRecurring() ? TRUE : FALSE);
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_NOTE, event.getNote());
         contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_COLOR, event.getColor());
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.priority);
-        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.type);
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_PRIORITY, event.getPriority());
+        contentValues.put(DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_EVENT_TYPE, event.getType());
 
         String where = DBTables.EVENT_INSTANCE_EXCEPTION_EVENT_ID + "=?";
         String[] whereArgs = {Integer.toString(eventId)};

@@ -9,19 +9,18 @@ public class Event {
     private String time;
     private String month;
     private String year;
-    private String duration;
     private boolean isNotify;
     private boolean isRecurring;
     private String recurringPeriod;
     private String note;
     private int color;
-    private String location;
-    private String phoneNumber;
 
-    public String priority; //toDB
-    public String type; //toDB
-    private String mail;
+    private String priority; //toDB
+    private String type; //toDB
     private int parentId;
+
+    public Event() {
+    }
 
     public int getId() {
         return id;
@@ -79,14 +78,6 @@ public class Event {
         this.year = year;
     }
 
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
     ///added by sarah
     public String getPriority() {
         return priority;
@@ -95,7 +86,8 @@ public class Event {
         return type;
     }
 
-
+    public void setPriority(String p){ priority=p; }
+    public void setType(String t){ type=t; }
     public boolean isNotify() {
         return isNotify;
     }
@@ -136,29 +128,6 @@ public class Event {
         this.color = color;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public int getParentId() {
         return parentId;
@@ -168,14 +137,17 @@ public class Event {
         this.parentId = parentId;
     }
 
+
+
+
     @Override
     public String toString() {
         return title + '\n' +
                 "DATE=" + date + '\n' +
                 "TIME=" + time + '\n' +
-                duration + '\n' +
+                "PRIORITY=" + priority + '\n' +
                 "NOTE=" + note + '\n' +
-                "LOCATION=" + location + '\n';
+                "TYPE=" + type + '\n';
     }
 
 

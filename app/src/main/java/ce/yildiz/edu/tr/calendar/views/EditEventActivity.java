@@ -276,10 +276,10 @@ public class EditEventActivity extends AppCompatActivity {
 
         seekBar = findViewById(R.id.seekbar);
 
-        if(mEvent.priority==null)
-            mEvent.priority="Low";
+        if(mEvent.getPriority()==null)
+            mEvent.setPriority("Low");
 
-        switch (mEvent.priority) {
+        switch (mEvent.getPriority()) {
             case "Low":
                 seekBar.setProgress(0);
                 break;
@@ -294,7 +294,7 @@ public class EditEventActivity extends AppCompatActivity {
                 break;
         }
 
-        switch (mEvent.type) {
+        switch (mEvent.getType()) {
             case "Travel":
                 radioButton = findViewById(R.id.radio_one);
                 radioButton.setChecked(true);

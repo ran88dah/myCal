@@ -553,8 +553,8 @@ public class NewEventActivity extends AppCompatActivity {
         event.setRecurring(isRecurring(repeatTextView.getText().toString()));
         event.setRecurringPeriod(repeatTextView.getText().toString());
         event.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
-        event.priority=priority;
-        event.type= (String) radioButton.getText();
+        event.setPriority(priority);
+        event.setType((String) radioButton.getText());
 
 
 
