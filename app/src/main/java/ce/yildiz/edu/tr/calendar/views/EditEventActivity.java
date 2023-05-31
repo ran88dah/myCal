@@ -117,8 +117,6 @@ public class EditEventActivity extends AppCompatActivity {
     private NotificationAdapter notificationAdapter;
     private Event mEvent;
     String priority;
-    //EVENT TYPE
-
     RadioGroup radioGroup;
     RadioButton radioButton;
     String clickedTypeName;
@@ -296,18 +294,22 @@ public class EditEventActivity extends AppCompatActivity {
 
         switch (mEvent.type) {
             case "Travel":
+                Type= "Travel";
                 radioButton = findViewById(R.id.radio_one);
                 radioButton.setChecked(true);
                 break;
             case "Meeting":
+                Type= "Meeting";
                 radioButton = findViewById(R.id.radio_two);
                 radioButton.setChecked(true);
                 break;
             case "Salary":
+                Type= "Salary";
                 radioButton = findViewById(R.id.radio_three);
                 radioButton.setChecked(true);
                 break;
             case "Others":
+                Type= "Others";
                 radioButton = findViewById(R.id.radio_four);
                 radioButton.setChecked(true);
                 break;
@@ -789,8 +791,8 @@ public class EditEventActivity extends AppCompatActivity {
         mEvent.setRecurring(isRecurring(repeatTextView.getText().toString()));
         mEvent.setRecurringPeriod(repeatTextView.getText().toString());
         mEvent.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
-        //mEvent.priority=priority;
-        //mEvent.type= ;
+        mEvent.priority=priority;
+        mEvent.type= Type;
         if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
         } else {
