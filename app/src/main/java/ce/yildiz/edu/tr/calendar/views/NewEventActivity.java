@@ -86,7 +86,6 @@ public class NewEventActivity extends AppCompatActivity {
     private TextView setDateTextView;
     private LinearLayout setTimeLinearLayout;
     private TextView setTimeTextView;
-   // private Button setDurationButton;
     private RecyclerView notificationsRecyclerView;
     private TextView addNotificationTextView;
     private TextView repeatTextView;
@@ -95,8 +94,7 @@ public class NewEventActivity extends AppCompatActivity {
     private TextInputLayout eventLocationTextInputLayout;
     private ImageButton locationImageButton;
     private TextInputLayout phoneNumberTextInputLayout;
-    //private TextInputLayout mailTextInputLayout;
-   // private TextInputEditText mailTextInputEditText;
+
     private Switch mailSwitch;
 
     private boolean mLocationPermissionGranted;
@@ -109,8 +107,7 @@ public class NewEventActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private List<Notification> notifications;
     private Event event;
-    //EVENT TYPE
-   // Spinner spinnerType;
+
     String Type;
 
     RadioGroup radioGroup;
@@ -120,8 +117,7 @@ public class NewEventActivity extends AppCompatActivity {
     String priority="Low";
     TextView textView;
     String clickedTypeName;
-   /* public ArrayList<typeItem> mTpyList;
-    public typeAdapter mAdapter;*/
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -139,7 +135,6 @@ public class NewEventActivity extends AppCompatActivity {
         createAlertDialogs();
         defineListeners();
         radioGroup = findViewById(R.id.radioGroup);
-        //textView = findViewById(R.id.text_view_selected);
 
         Button buttonApply = findViewById(R.id.button_apply);
         buttonApply.setOnClickListener(new View.OnClickListener() {
@@ -149,31 +144,13 @@ public class NewEventActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
-                //textView.setText("Your choice: " + radioButton.getText());
+
             }
         });
         setSupportActionBar(toolbar);
 
 
-       // initList();
-      //  spinnerType = findViewById(R.id.spinner);
-/*
-        mAdapter = new typeAdapter(this,mTpyList);
-        spinnerType.setAdapter(mAdapter);
-        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                typeItem clickedItem = (typeItem) adapterView.getItemAtPosition(i);
-                 clickedTypeName = clickedItem.getTypeName();
-                //Toast.makeText(this,clickedTypeName+" selected",Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-*/
         //==========================SEEKBAR==========================
         seekBar = findViewById(R.id.seekbar);
 
@@ -223,16 +200,7 @@ public class NewEventActivity extends AppCompatActivity {
         Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
                 Toast.LENGTH_SHORT).show();
     }
-    /*public void initList(){
-        mTpyList = new ArrayList<>();
-        mTpyList.add(new typeItem("Eid",R.drawable.c1));
-        mTpyList.add(new typeItem("Birthday",R.drawable.c2));
-        mTpyList.add(new typeItem("Travel",R.drawable.c3));
-        mTpyList.add(new typeItem("Meeting",R.drawable.c4));
-        mTpyList.add(new typeItem("Salary",R.drawable.c5));
-        mTpyList.add(new typeItem("Others",R.drawable.c6));
 
-    }*/
 
 
     private void defineViews() {
@@ -242,19 +210,13 @@ public class NewEventActivity extends AppCompatActivity {
         setDateTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetDate);
         setTimeLinearLayout = (LinearLayout) findViewById(R.id.AddNewEventActivity_LinearLayout_SetTime);
         setTimeTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetTime);
-       // setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
+
         notificationsRecyclerView = (RecyclerView) findViewById(R.id.AddNewEventActivity_RecyclerView_Notifications);
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
 
        pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-      //  eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-       // locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-       // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
-       // mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
-       // mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
-       // mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
 
 
         progressBar = (ProgressBar) findViewById(R.id.AddNewEventActivity_ProgressBar);
@@ -373,13 +335,7 @@ public class NewEventActivity extends AppCompatActivity {
                 setTime(view);
             }
         });
-/*
-        setDurationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDuration(view);
-            }
-        });*/
+
 
         addNotificationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -401,47 +357,10 @@ public class NewEventActivity extends AppCompatActivity {
                 pickNoteColor(view);
             }
         });
-/*
-        locationImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mLocationPermissionGranted) {
-                    getLocationPermission();
-                } else {
-                    startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
-                }
-            }
-        }); */
-/*
-        mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    mailTextInputEditText.setEnabled(true);
-                    mailTextInputLayout.setEnabled(true);
-                } else {
-                    mailTextInputEditText.setText("");
-                    mailTextInputEditText.setEnabled(false);
-                    mailTextInputLayout.setEnabled(false);
-                }
 
-            }
-        }); */
-    }
-/*
-    private void setDuration(View view) {
-        Calendar calendar = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DurationPickerTheme, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                setDurationButton.setText("DURATION: " + Integer.toString(hourOfDay) + " HOURS " + Integer.toString(minute) + " MINUTES");
-            }
-        }, 0, 0, true);
-        timePickerDialog.setTitle("Duration");
 
-        timePickerDialog.show();
     }
-*/
+
 
     public void setTime(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -629,7 +548,7 @@ public class NewEventActivity extends AppCompatActivity {
         event.setMonth(Utils.monthFormat.format(aDate));
         event.setYear(Utils.yearFormat.format(aDate));
         event.setTime(setTimeTextView.getText().toString());
-      //  event.setDuration(setDurationButton.getText().toString());
+
         event.setNotify(!notifications.isEmpty());
         event.setRecurring(isRecurring(repeatTextView.getText().toString()));
         event.setRecurringPeriod(repeatTextView.getText().toString());
@@ -637,14 +556,7 @@ public class NewEventActivity extends AppCompatActivity {
         event.priority=priority;
         event.type= (String) radioButton.getText();
 
-        /*
 
-        int radioId = radioGroup.getCheckedRadioButtonId();
-
-        radioButton = findViewById(radioId);
-
-        Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
-                Toast.LENGTH_SHORT).show();*/
 
         if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
@@ -652,26 +564,8 @@ public class NewEventActivity extends AppCompatActivity {
         } else {
             event.setColor(notColor);
         }
-        //event.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
-        //event.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
-       // event.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
-
-        /*
-
-                   <Button
-                                android:id="@+id/AddNewEventActivity_Button_Duration"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginBottom="20dp"
-                                android:background="?mainColor"
-
-                                android:text="@string/duration_0_hours_0_minutes"
-                                android:textColor="@color/white" />
 
 
-        */
 
     }
 
