@@ -835,7 +835,6 @@ public class EditEventActivity extends AppCompatActivity {
     private boolean validateNotifications() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(alarmYear, alarmMonth, alarmDay);
-
         calendar.set(Calendar.HOUR_OF_DAY, alarmHour);
         calendar.set(Calendar.MINUTE, alarmMinute);
         calendar.set(Calendar.SECOND, 0);
