@@ -75,7 +75,7 @@ public class UpcomingEventsFragment extends Fragment {
     }
 
     private void initViews() {
-        periodTextView.setText(Utils.CURRENT_FILTER);
+        periodTextView.setText(Utils.CURRENT_FILTER); //make it to 5 upcom
         setUpRecyclerView();
     }
 
