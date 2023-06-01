@@ -77,7 +77,7 @@
 
 
                 <TextView
-                    android:id="@+id/LayoutCell_TextView_EventPriorty"
+                    android:id="@+id/LayoutCell_TextView_EventPriority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="PRIORITY"

@@ -195,7 +195,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             notificationImageButton = (ImageButton) itemView.findViewById(R.id.LayoutCell_ImageButton_Notification);
             eventTimeLinearLayout = (LinearLayout) itemView.findViewById(R.id.LayoutCell_LinearLayout_EventTime);
 //added by sarah
-            eventPriortyTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventPriorty);
+            eventPriortyTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventPriority);
             eventTypeTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventType);
           // eventDateTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventDate);
         }

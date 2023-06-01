@@ -73,6 +73,9 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         holder.eventDateTextView.setText(event.getDate());
         holder.eventTimeTextView.setText(event.getTime());
         holder.eventNoteTextView.setText(event.getNote());
+        holder.eventPriorityTextView.setText(event.getPriority());
+        holder.eventTypeTextView.setText(event.getType());
+
 
         holder.optionsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +128,10 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         private TextView eventDateTextView;
         private TextView eventTimeTextView;
         private TextView eventNoteTextView;
+
+        private TextView eventPriorityTextView;
+
+        private TextView eventTypeTextView;
         private ImageButton optionsImageButton;
         private ImageButton notificationImageButton;
         private LinearLayout eventTimeLinearLayout;
@@ -139,6 +146,8 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             eventDateTextView = (TextView) itemView.findViewById(R.id.UpcomingLayoutCell_TextView_EventDate);
             eventTimeTextView = (TextView) itemView.findViewById(R.id.UpcomingLayoutCell_TextView_EventTime);
             eventNoteTextView = (TextView) itemView.findViewById(R.id.UpcomingLayoutCell_TextView_EventNote);
+            eventPriorityTextView = (TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventPriority);
+            eventTypeTextView =(TextView) itemView.findViewById(R.id.LayoutCell_TextView_EventType);
             optionsImageButton = (ImageButton) itemView.findViewById(R.id.UpcomingLayoutCell_ImageButton_Options);
             notificationImageButton = (ImageButton) itemView.findViewById(R.id.UpcomingLayoutCell_ImageButton_Notification);
             eventTimeLinearLayout = (LinearLayout) itemView.findViewById(R.id.UpcomingLayoutCell_LinearLayout_Time);
@@ -146,6 +155,9 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             upcomingEventLinearLayout = (LinearLayout) itemView.findViewById(R.id.UpcomingEventsFragment_LinearLayout);
         }
     }
+
+
+//-----------------------------------
 
     private class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
         private int position;

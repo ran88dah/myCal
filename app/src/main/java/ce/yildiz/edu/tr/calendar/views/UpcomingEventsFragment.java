@@ -73,7 +73,7 @@ public class UpcomingEventsFragment extends Fragment {
         periodTextView = (TextView) view.findViewById(R.id.UpcomingEventsFragment_TextView_Period);
         eventsRecyclerView = (RecyclerView) view.findViewById(R.id.UpcomingEventsFragment_RecyclerView_Events);
     }
-
+    // LayoutCell_TextView_EventPriority  LayoutCell_TextView_EventType
     private void initViews() {
         periodTextView.setText(Utils.CURRENT_FILTER); //make it to 5 upcom
         setUpRecyclerView();

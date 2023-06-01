@@ -79,14 +79,13 @@ public class Event {
     }
 
     ///added by sarah
-    public String getPriority() {
-        return priority;
-    }
+    public String getPriority() { return priority; }
     public String getType() {
         return type;
     }
 
     public void setPriority(String p){ priority=p; }
+
     public void setType(String t){ type=t; }
     public boolean isNotify() {
         return isNotify;
