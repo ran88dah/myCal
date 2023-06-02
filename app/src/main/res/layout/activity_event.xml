@@ -27,7 +27,12 @@
         android:orientation="horizontal"
         android:padding="15dp">
 
-
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:srcCompat="@drawable/ic_event_white" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/AddNewEventActivity_TextInputLayout_EventTitle"
@@ -499,7 +504,15 @@
                                     android:onClick="checkButton"/>
 
                             </RadioGroup>
-
+                            <Button
+                                android:id="@+id/button_apply"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/text_view_selected"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="167dp"
+                                android:text="apply"
+                                tools:ignore="UnknownId" />
                         </RelativeLayout>
 
 
