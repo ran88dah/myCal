@@ -287,11 +287,6 @@ public class EditEventActivity extends AppCompatActivity {
         bgShape.setColor( mEvent.getColor());
 
 
-        //RETRIEVING
-
-      //  eventLocationTextInputLayout.getEditText().setText(mEvent.getPriority());
-       // phoneNumberTextInputLayout.getEditText().setText(mEvent.getType());
-
     }
 
     private void initVariables() {
@@ -656,9 +651,6 @@ public class EditEventActivity extends AppCompatActivity {
         } else {
             mEvent.setColor(notColor);
         }
-       // mEvent.setLocation(eventLocationTextInputLayout.getEditText().getText().toString().trim());
-       // mEvent.setPhoneNumber(phoneNumberTextInputLayout.getEditText().getText().toString().trim());
-       // mEvent.setMail(mailTextInputLayout.getEditText().getText().toString().trim());
 
     }
 
