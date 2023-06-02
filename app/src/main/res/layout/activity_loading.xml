@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="336dp"
             android:layout_marginBottom="80dp"
-            app:srcCompat="@drawable/my_cal_logo_removebg_preview" />
+            app:srcCompat="@drawable/y_cal_removebg_preview2" />
 
     </LinearLayout>
 
