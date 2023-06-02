@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -216,15 +217,19 @@ public class CalendarFragment extends Fragment {
         List<Event> eventList = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        String eventTime = simpleDateFormat.format(calendar.getTime());
 
-        int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        for(Event d:events){
+            if(d.getDate().equals(eventTime))
+                eventList.add(d);
+        }
 
         // Add recurring events
-        Event mEvent = new Event();
+       /* Event mEvent = new Event();
         List<RecurringPattern> recurringPatterns = readRecurringPatterns();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+
         for (RecurringPattern recurringPattern : recurringPatterns) {
             switch (recurringPattern.getPattern()) {
                 case Utils.DAILY:
@@ -267,6 +272,8 @@ public class CalendarFragment extends Fragment {
         }
         cursor.close();
         sqLiteDatabase.close();
+
+         */
         return eventList;
     }
 
