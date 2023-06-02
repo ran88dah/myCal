@@ -40,9 +40,7 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_app" />
 
-        <activity
-            android:name=".views.MapsActivity"
-            android:label="@string/title_activity_maps" />
+
 
         <service
             android:name=".other.AlarmService"

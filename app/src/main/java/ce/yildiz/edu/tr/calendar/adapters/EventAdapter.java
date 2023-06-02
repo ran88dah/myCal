@@ -261,28 +261,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     calendarFragment.getFragmentManager().beginTransaction().detach(calendarFragment).commit();
                     calendarFragment.getFragmentManager().beginTransaction().attach(calendarFragment).commit();
                     return true;
-               /* case R.id.Popup_Item_Share:
-                    intent = new Intent();
-                    intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra(Intent.EXTRA_TEXT, mEvent.toString());
-                    intent.setType("text/plain");
-                    calendarFragment.startActivity(Intent.createChooser(intent, null));
-                    return true;
-                case R.id.Popup_Item_Mail:
-                    // String receiver_email = receiver_editText.getText().toString();
-                    String subject = mEvent.getTitle();
-                    String message = mEvent.toString();
 
-                    // String[] addresses = receiver_email.split(", ");
-
-                    intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    // intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-                    intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    intent.putExtra(Intent.EXTRA_TEXT, message);
-
-                    calendarFragment.startActivity(Intent.createChooser(intent, "Send Email"));
-                    return true;*/
             }
 
             return false;
