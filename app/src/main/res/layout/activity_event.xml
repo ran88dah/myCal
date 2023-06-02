@@ -504,15 +504,7 @@
                                     android:onClick="checkButton"/>
 
                             </RadioGroup>
-                            <Button
-                                android:id="@+id/button_apply"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/text_view_selected"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="167dp"
-                                android:text="apply"
-                                tools:ignore="UnknownId" />
+
                         </RelativeLayout>
 
 

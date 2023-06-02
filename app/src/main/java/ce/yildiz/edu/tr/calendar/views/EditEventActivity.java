@@ -131,19 +131,7 @@ public class EditEventActivity extends AppCompatActivity {
 
 
         radioGroup = findViewById(R.id.radioGroup);
-        //textView = findViewById(R.id.text_view_selected);
 
-        Button buttonApply = findViewById(R.id.button_apply);
-        buttonApply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int radioId = radioGroup.getCheckedRadioButtonId();
-
-                radioButton = findViewById(radioId);
-
-                //textView.setText("Your choice: " + radioButton.getText());
-            }
-        });
         setSupportActionBar(toolbar);
 
 //==========================SEEKBAR==========================
