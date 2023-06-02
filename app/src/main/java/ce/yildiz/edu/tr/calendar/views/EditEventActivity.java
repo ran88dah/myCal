@@ -79,9 +79,6 @@ public class EditEventActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private final int MAPS_ACTIVITY_REQUEST = 1;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-
     private Toolbar toolbar;
     private ProgressBar progressBar;
     private TextInputLayout eventTitleTextInputLayout; //check
@@ -90,25 +87,14 @@ public class EditEventActivity extends AppCompatActivity {
     private TextView setDateTextView;
     private LinearLayout setTimeLinearLayout;
     private TextView setTimeTextView;
-    private Button setDurationButton;
     private RecyclerView notificationsRecyclerView;
     private TextView addNotificationTextView;
     private TextView repeatTextView;
     private TextInputLayout eventNoteTextInputLayout;
     private TextView pickNoteColorTextView;
-    private TextInputLayout eventLocationTextInputLayout;
-    private ImageButton locationImageButton;
-    private TextInputLayout phoneNumberTextInputLayout;
-    private TextInputLayout mailTextInputLayout;
-    private TextInputEditText mailTextInputEditText;
-    private Switch mailSwitch;
-
     private AlertDialog notificationAlertDialog;
     private AlertDialog repetitionAlertDialog;
     private int alarmYear, alarmMonth, alarmDay, alarmHour, alarmMinute;
-
-    private boolean mLocationPermissionGranted;
-
     private int notColor;
     private DBHelper dbHelper;
     private List<Notification> currentNotifications;
@@ -117,6 +103,7 @@ public class EditEventActivity extends AppCompatActivity {
     private NotificationAdapter notificationAdapter;
     private Event mEvent;
     String priority;
+    String type;
     //EVENT TYPE
 
     RadioGroup radioGroup;
@@ -124,12 +111,8 @@ public class EditEventActivity extends AppCompatActivity {
     String clickedTypeName;
     Spinner spinnerType;
     String Type;
-    /*public ArrayList<typeItem> mTpyList;
-    public typeAdapter mAdapter;*/
 
-    ImageView image;
     SeekBar seekBar;
-    TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -145,6 +128,8 @@ public class EditEventActivity extends AppCompatActivity {
         initVariables();
         createAlertDialogs();
         defineListeners();
+
+
         radioGroup = findViewById(R.id.radioGroup);
         //textView = findViewById(R.id.text_view_selected);
 
@@ -161,26 +146,6 @@ public class EditEventActivity extends AppCompatActivity {
         });
         setSupportActionBar(toolbar);
 
-        //initList();
-        //spinnerType = findViewById(R.id.spinner);
-
-  /*      mAdapter = new typeAdapter(this,mTpyList);
-        spinnerType.setAdapter(mAdapter);
-        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                typeItem clickedItem = (typeItem) adapterView.getItemAtPosition(i);
-                clickedTypeName = clickedItem.getTypeName();
-                //Toast.makeText(this,clickedTypeName+" selected",Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
 //==========================SEEKBAR==========================
         seekBar = findViewById(R.id.seekbar);
         //textView = findViewById(R.id.textView2);
@@ -227,16 +192,8 @@ public class EditEventActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
                 Toast.LENGTH_SHORT).show();
+        type= (String) radioButton.getText() ;
     }
-    /*public void initList(){
-        mTpyList = new ArrayList<>();
-        mTpyList.add(new typeItem("Eid",R.drawable.c1));
-        mTpyList.add(new typeItem("Birthday",R.drawable.c2));
-        mTpyList.add(new typeItem("Travel",R.drawable.c3));
-        mTpyList.add(new typeItem("Meeting",R.drawable.c4));
-        mTpyList.add(new typeItem("Salary",R.drawable.c5));
-        mTpyList.add(new typeItem("Others",R.drawable.c6));
-    }*/
 
     private void defineViews() {
         eventTitleTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_EventTitle);
@@ -245,19 +202,11 @@ public class EditEventActivity extends AppCompatActivity {
         setDateTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetDate);
         setTimeLinearLayout = (LinearLayout) findViewById(R.id.AddNewEventActivity_LinearLayout_SetTime);
         setTimeTextView = (TextView) findViewById(R.id.AddNewEventActivity_TexView_SetTime);
-       // setDurationButton = (Button) findViewById(R.id.AddNewEventActivity_Button_Duration);
         notificationsRecyclerView = (RecyclerView) findViewById(R.id.AddNewEventActivity_RecyclerView_Notifications);
         repeatTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Repeat);
         addNotificationTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_Add_Notification);
         eventNoteTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Note);
         pickNoteColorTextView = (TextView) findViewById(R.id.AddNewEventActivity_TextView_PickNoteColor);
-       // eventLocationTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Location);
-      // locationImageButton = (ImageButton) findViewById(R.id.AddNewEventActivity_ImageButton_Location);
-      // phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_PhoneNumber);
-     //   mailTextInputLayout = (TextInputLayout) findViewById(R.id.AddNewEventActivity_TextInputLayout_Mail);
-     //   mailTextInputEditText = (TextInputEditText) findViewById(R.id.AddNewEventActivity_TextInputEditText_Mail);
-        //mailSwitch = (Switch) findViewById(R.id.AddNewEventActivity_Switch_Mail);
-
         progressBar = (ProgressBar) findViewById(R.id.AddNewEventActivity_ProgressBar);
         toolbar = (Toolbar) findViewById(R.id.AddNewEventActivity_Toolbar);
 
@@ -314,38 +263,6 @@ public class EditEventActivity extends AppCompatActivity {
         }
 
 
-     /* image= findViewById(R.id.img_view1);
-        if(mEvent.type.equals("Eid"))
-            Toast.makeText(this,"eid",Toast.LENGTH_LONG).show();//image.setImageResource(R.drawable.c4);
-        else
-            image.setImageResource(R.drawable.c4);
-        */  //   Toast.makeText(this,"meet",Toast.LENGTH_LONG).show(); //
-
-      /*
-        for(int i = 0; i < spinnerType.getCount(); i++) {
-            if (spinnerType.getItemAtPosition(i).toString().equals(myString)) {
-                spinnerType.setSelection(i,true);
-                break;
-            }
-        }   spinnerType = findViewById(R.id.spinner);
-        String myString = "Meeting";
-        ArrayAdapter myAdapter = (ArrayAdapter) spinnerType.getAdapter(); //cast to an ArrayAdapter
-        int spinnerPosition = myAdapter.getPosition(myString);
-        spinnerType.setSelection(spinnerPosition); */
-
-
-
-  /* */
-      /*   //the value you want the position for
-
-        ArrayAdapter myAdapter = (ArrayAdapter) spinnerType.getAdapter(); //cast to an ArrayAdapter
-
-        int spinnerPosition = myAdapter.getPosition(myString);
-
-//set the default according to the value
-        spinnerType.setSelection(spinnerPosition);
-        spinnerType.setSelection(myAdapter.getPosition(myString)); */
-
         setDateTextView.setText(intent.getStringExtra("eventDate"));
 
         if (mEvent.isAllDay()) {
@@ -356,8 +273,6 @@ public class EditEventActivity extends AppCompatActivity {
             allDayEventSwitch.setChecked(false);
             setTimeTextView.setText(mEvent.getTime());
         }
-
-       // setDurationButton.setText(mEvent.getDuration());
 
 //        eventNotifications = readNotifications(mEvent.getId());
 //        cancelAlarms(eventNotifications);
@@ -376,21 +291,7 @@ public class EditEventActivity extends AppCompatActivity {
 
       //  eventLocationTextInputLayout.getEditText().setText(mEvent.getPriority());
        // phoneNumberTextInputLayout.getEditText().setText(mEvent.getType());
-      // eventLocationTextInputLayout.getEditText().setText(mEvent.getLocation());
 
-      // phoneNumberTextInputLayout.getEditText().setText(mEvent.getPhoneNumber());
-
-      /*  if (mEvent.getMail() == null | "".equals(mEvent.getMail())) {
-            mailSwitch.setChecked(false);
-            mailTextInputEditText.setText("");
-            mailTextInputEditText.setEnabled(false);
-            mailTextInputLayout.setEnabled(false);
-        } else {
-            mailSwitch.setChecked(true);
-            mailTextInputEditText.setEnabled(true);
-            mailTextInputLayout.setEnabled(true);
-            mailTextInputLayout.getEditText().setText(mEvent.getMail());
-        }*/
     }
 
     private void initVariables() {
@@ -405,9 +306,6 @@ public class EditEventActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        }
     }
 
     private void createAlertDialogs() {
@@ -482,12 +380,6 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-      /*  setDurationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDuration(view);
-            }
-        });  */
 
         addNotificationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -510,34 +402,7 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        //LOCATION WONT BE USED
 
-        /*
-        locationImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mLocationPermissionGranted) {
-                    getLocationPermission();
-                } else {
-                    startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
-                }
-            }
-        }); */
-   //MAIL WONT BE USED
-    /*    mailSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    mailTextInputEditText.setEnabled(true);
-                    mailTextInputLayout.setEnabled(true);
-                } else {
-                    mailTextInputEditText.setText("");
-                    mailTextInputEditText.setEnabled(false);
-                    mailTextInputLayout.setEnabled(false);
-                }
-
-            }
-        });  */
     }
 
     private Event readEvent(int eventId) {
@@ -564,19 +429,6 @@ public class EditEventActivity extends AppCompatActivity {
         return notifications;
     }
 
-/*
-    private void setDuration(View view) {
-        Calendar calendar = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DurationPickerTheme, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                setDurationButton.setText("DURATION: " + Integer.toString(hourOfDay) + " HOURS " + Integer.toString(minute) + " MINUTES");
-            }
-        }, 0, 0, true);
-        timePickerDialog.setTitle("Duration");
-
-        timePickerDialog.show();
-    }  */
 
     public void setTime(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -789,13 +641,16 @@ public class EditEventActivity extends AppCompatActivity {
         mEvent.setMonth(Utils.monthFormat.format(aDate));
         mEvent.setYear(Utils.yearFormat.format(aDate));
         mEvent.setTime(setTimeTextView.getText().toString());
-       // mEvent.setDuration(setDurationButton.getText().toString());
         mEvent.setNotify(!notificationAdapter.getNotifications().isEmpty());
         mEvent.setRecurring(isRecurring(repeatTextView.getText().toString()));
         mEvent.setRecurringPeriod(repeatTextView.getText().toString());
         mEvent.setNote(eventNoteTextInputLayout.getEditText().getText().toString().trim());
-        //mEvent.priority=priority;
         //mEvent.type= ;
+       if(priority !=null)
+        mEvent.setPriority(priority);
+       if(type !=null)
+            mEvent.setType(type);
+
         if (notColor == 0) {
             notColor = getResources().getInteger(R.color.red);
         } else {
@@ -913,39 +768,5 @@ public class EditEventActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         return sharedPreferences.getString(key, "Indigo");
     }
-/*
-    private void getLocationPermission() {
-        mLocationPermissionGranted = false;
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
-    }
 
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mLocationPermissionGranted = true;
-                    startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class), MAPS_ACTIVITY_REQUEST);
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MAPS_ACTIVITY_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                eventLocationTextInputLayout.getEditText().setText(data.getStringExtra("address"));
-            }
-        }
-
-    } */
 }
