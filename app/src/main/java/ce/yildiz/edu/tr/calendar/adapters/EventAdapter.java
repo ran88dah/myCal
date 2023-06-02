@@ -110,7 +110,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         View view = LayoutInflater.from(context).inflate(R.layout.layout_event_list_row, parent, false);
         return new ViewHolder(view);
     }
-
+//FOR WAJD
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final Event event = eventList.get(position);
