@@ -256,7 +256,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                             alertDialog.dismiss();
                         }
                     }
-
+//for t
                     // Refresh the fragment
                     calendarFragment.getFragmentManager().beginTransaction().detach(calendarFragment).commit();
                     calendarFragment.getFragmentManager().beginTransaction().attach(calendarFragment).commit();
