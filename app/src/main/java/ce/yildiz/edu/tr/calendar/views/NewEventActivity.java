@@ -136,17 +136,7 @@ public class NewEventActivity extends AppCompatActivity {
         defineListeners();
         radioGroup = findViewById(R.id.radioGroup);
 
-        Button buttonApply = findViewById(R.id.button_apply);
-        buttonApply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int radioId = radioGroup.getCheckedRadioButtonId();
 
-                radioButton = findViewById(radioId);
-
-
-            }
-        });
         setSupportActionBar(toolbar);
 
 
@@ -537,6 +527,7 @@ public class NewEventActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.e(TAG, "An error has occurred while parsing the date string");
         }
+
 
         int radioId = radioGroup.getCheckedRadioButtonId();
 
