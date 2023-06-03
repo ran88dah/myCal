@@ -27,7 +27,12 @@
         android:orientation="horizontal"
         android:padding="15dp">
 
-
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:srcCompat="@drawable/ic_event_white" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/AddNewEventActivity_TextInputLayout_EventTitle"
