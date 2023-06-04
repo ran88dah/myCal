@@ -39,7 +39,8 @@ public class AlarmService extends Service {
     private int notificationId;
     private String soundName;
 
-
+    String eventType;
+    String eventPriority;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: ");
@@ -49,6 +50,8 @@ public class AlarmService extends Service {
             eventTitle = bundle.getString("eventTitle", "No title");
             eventNote = bundle.getString("eventNote", "No note");
             eventColor = bundle.getInt("eventColor", -49920);
+            eventType = bundle.getString("eventType", "Others");
+            eventPriority = bundle.getString("eventPriority", "Low");
             eventTimeStamp = bundle.getString("eventTimeStamp", "No Timestamp");
             interval = bundle.getString("interval", "");
             notificationId = bundle.getInt("notificationId", 0);
@@ -86,7 +89,7 @@ public class AlarmService extends Service {
                     .build();
 
             NotificationChannel mChannel = new NotificationChannel("0", "Event Notification", NotificationManager.IMPORTANCE_HIGH);
-            mChannel.setDescription(eventNote);
+            mChannel.setDescription(eventNote + "\n" + eventType+ "\n" + eventPriority );
             mChannel.enableLights(true);
             mChannel.enableVibration(true);
             mChannel.setVibrationPattern(vibratePattern);
@@ -108,7 +111,7 @@ public class AlarmService extends Service {
                     .setSound(ringtoneUri)
                     .setColor(eventColor)
                     .setContentTitle(eventTitle)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(eventNote))
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(eventNote + "\n" + eventType+ "\n" + eventPriority))
                     .setAutoCancel(true)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentIntent(pendingIntent);
@@ -121,7 +124,7 @@ public class AlarmService extends Service {
                     .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
                     .setVibrate(vibratePattern)
                     .setSound(ringtoneUri)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(eventNote))
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(eventNote + "\n" + eventType+ "\n" + eventPriority))
                     .setColor(eventColor)
                     .setAutoCancel(true)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -129,7 +132,7 @@ public class AlarmService extends Service {
 
         }
 
-        notificationBuilder.setContentText(eventNote);
+        notificationBuilder.setContentText(eventNote + "\n" + eventType+ "\n" + eventPriority);
 
         if (mNotifyManager != null) {
             mNotifyManager.notify(notificationId, notificationBuilder.build());

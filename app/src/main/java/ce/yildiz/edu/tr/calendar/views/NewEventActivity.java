@@ -490,6 +490,9 @@ public class NewEventActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), ServiceAutoLauncher.class);
         intent.putExtra("eventTitle", event.getTitle());
         intent.putExtra("eventNote", event.getNote());
+        //added by sarah
+        intent.putExtra("eventType", event.getType());
+        intent.putExtra("eventPriority", event.getPriority());
         //intent.putExtra("eventColor", event.getColor());
         intent.putExtra("eventTimeStamp", event.getDate() + ", " + event.getTime());
         intent.putExtra("interval", getInterval());
