@@ -1,7 +1,6 @@
 
-# Features
-- Add/Edit/Delete events  
-- Repeating events every specified period (days, weeks, months, years). 
-- Set reminder notifications
+Application's Features
+- Add/Edit/Delete events. 
+- Set reminder notifications.
 - Add notes to calendar events.
-- List upcoming events
+- List upcoming events (Today's , Next 5 events , next 30 days).
